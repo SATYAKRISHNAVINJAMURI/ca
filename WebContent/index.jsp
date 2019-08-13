@@ -8,10 +8,18 @@
 </head>
 <body>
 <h1> Hello Welcome. </h1>
-<a href="login.jsp">Login</a>
+<%@ page import= "com.ca.classes.Branches,java.util.List" %> 
+<a href="/ca">Login</a>
+<table border='1'>
+<% List<Branches> branchList=(List<Branches>)request.getAttribute("branchList"); %>
 <%
+for(Branches branch:branchList){%>
+	<tr>
+	
+	<td><%= branch.getBranch_id() %></td></tr>
+<% }%>
 
-%>
+</table>
 
 </body>
 </html>

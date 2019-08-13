@@ -2,7 +2,11 @@ package com.ca.servlets;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.ServletConfig;
@@ -11,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.ca.classes.*;
 
 
 
@@ -20,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Ca")
 public class Ca extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Connection connection = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,7 +40,7 @@ public class Ca extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		Connection connection = null;
+		
 		super.init(config);
 		try {
 			Properties properties = new Properties();
@@ -62,16 +68,33 @@ public class Ca extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String str = request.getParameter("action");
+		System.out.println(str);
 		switch(str){
 			case "login":
-				login();
+//				login();
 				break;
-			default:
+			case "getCourses":
+				welcome( request,response);
 				break;
 		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 	
+	protected void welcome(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		List<Branches> branchList=new ArrayList<>();
+		String query="select * from branches";
+		try(PreparedStatement ptmt=connection.prepareStatement(query)){
+			ResultSet r1=ptmt.executeQuery();
+			while(r1.next()){
+				branchList.add(new Branches(r1.getString(1),r1.getString(2)));
+			}
+			request.setAttribute("branchList",branchList);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}catch(SQLException e){
+			e.printStackTrace();
+			
+		}
+	}
 	
 	protected void login(String username, String password){
 		/*
