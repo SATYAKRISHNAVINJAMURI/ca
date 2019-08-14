@@ -1,8 +1,7 @@
 package com.ca.classes;
 
-import com.ca.interfaces.User;
 
-public class Login implements User {
+public class Login{
 	private int user_id;
 	private String password;
 	private String role;
