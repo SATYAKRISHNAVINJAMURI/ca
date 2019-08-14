@@ -1,5 +1,5 @@
 package com.ca.interfaces;
 
-public interface User {
+public interface AlumniDaoI {
 
 }

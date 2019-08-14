@@ -1,8 +1,6 @@
 package com.ca.classes;
 
-public class Student {
-	private int student_id;
-	private String password;
+public class Student extends User{
 	private String name;
 	private String email;
 	private String department;
@@ -16,11 +14,9 @@ public class Student {
 	
 	
 
-	public Student(int student_id, String password, String name, String email, String department, String date_of_birth,
+	public Student(String name, String email, String department, String date_of_birth,
 			String address, String phoneno) {
 		super();
-		this.student_id = student_id;
-		this.password = password;
 		this.name = name;
 		this.email = email;
 		this.department = department;
@@ -29,23 +25,6 @@ public class Student {
 		this.phoneno = phoneno;
 	}
 
-
-
-	public int getStudent_id() {
-		return student_id;
-	}
-
-	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public String getName() {
 		return name;
