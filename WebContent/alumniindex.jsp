@@ -17,16 +17,30 @@
 	<input type="submit" name="action" value="search_alumni"/>
 </form>
 
-
+<table border='1'>
+<tr>
+<th>Name</th>
+<th>userId</th>
+<th>email</th>
+<th>phone</th>
+<th>department</th>
+<th>joiningYear</th>
+<th>department</th>
+</tr>
 <% List<Alumni> alumnilist =(List<Alumni>)request.getAttribute("alumni_list");
 for(Alumni al: alumnilist){ %>
-<h3> Name: </h3> <%=al.getName() %>
-<h3> Id: </h3> <%=al.getUser_id() %>
-<h3> Email: </h3> <%=al.getEmail() %>
-<h3> Phone: </h3> <%=al.getPhone() %>
-<h3> Department: </h3> <%=al.getDepartment() %>
-<h3> BatchFrom: </h3> <%=al.getYearOfJoining() %>
-<h3> BatchTo: </h3> <%=al.getDepartment() %>
+
+<tr>
+ <td><%=al.getName() %></td>
+ <td><%=al.getUser_id() %></td>
+ <td><%=al.getEmail() %></td>
+<td> <%=al.getPhone() %></td>
+<td> <%=al.getDepartment() %></td>
+<td> <%=al.getYearOfJoining() %></td>
+<td><%=al.getDepartment() %></td></tr>
+
 <% } %>
+</table>
+
 </body>
 </html>
