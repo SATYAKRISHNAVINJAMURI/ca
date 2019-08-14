@@ -60,7 +60,28 @@ public class StudentImplementationDao implements StudentDaoI {
 		return null;
 	}
 	
-	
+	public List<Merit> getMerit(Connection connection) {
+		// TODO Auto-generated method stub
+		try{
+			String template = "select * from merit_list";
+			PreparedStatement psmt = connection.prepareStatement(template);
+			Merit me = new Merit();
+			List<Merit> me_list = new ArrayList<>();
+			ResultSet rs = psmt.executeQuery();
+			while(rs.next()){
+				me.setName(rs.getString("name"));
+				me.setPhone(rs.getInt("phone_no"));
+				me.setEmail(rs.getString("email"));
+				me.setCourseName(rs.getString("course_name"));
+				me_list.add(me);
+			}
+			return me_list;
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 
 	}

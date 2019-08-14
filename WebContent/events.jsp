@@ -7,24 +7,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> This is Merit page.</h1>
-<%@ page import= "com.ca.classes.Merit,java.util.List" %> 
+<h1> This is Event page.</h1>
+<%@ page import= "com.ca.classes.Event,java.util.List" %> 
 
 <table border='1'>
 <tr>
-<th> Name</th>
-<th>Course Name</th>
-<th>Phone</th>
-<th>Email</th>
+<th>Event Name</th>
+<th>Description</th>
+<th>Time</th>
+<th>Venue</th>
 </tr>
-<% List<Merit> Meritlist =(List<Merit>)request.getAttribute("merit_list");
-for(Merit al: Meritlist){ %>
+<% List<Event> Eventlist =(List<Event>)request.getAttribute("events_list");
+for(Event al: Eventlist){ %>
 
 <tr>
  <td><%=al.getName() %></td>
- <td><%=al.getCourseName() %></td>
- <td><%=al.getPhone() %></td>
-<td> <%=al.getEmail() %></td>
+ <td><%=al.getDescription() %></td>
+ <td><%=al.getTime() %></td>
+<td> <%=al.getVenue() %></td>
 
 <% } %>
 </table>

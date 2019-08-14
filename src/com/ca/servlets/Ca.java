@@ -108,7 +108,7 @@ public class Ca extends HttpServlet {
 					if(ad.getEvents(connection) == null){
 						System.out.println("Null Event List");
 					}else{
-						request.setAttribute("event_list", ad.getEvents(connection));
+						request.setAttribute("events_list", ad.getEvents(connection));
 						request.getRequestDispatcher("events.jsp").forward(request, response);
 					}
 					} catch (ServletException | IOException e) {
@@ -121,7 +121,19 @@ public class Ca extends HttpServlet {
 				default: 
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 			case "merit":
-				ApplicationStatus(request,response);
+				try {
+					StudentImplementationDao ad = new StudentImplementationDao();
+					if(ad.getMerit(connection) == null){
+						System.out.println("Null Event List");
+					}else{
+						request.setAttribute("merit_list", ad.getEvents(connection));
+						request.getRequestDispatcher("merit.jsp").forward(request, response);
+					}
+					} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				break;
 					
 				
 		}
