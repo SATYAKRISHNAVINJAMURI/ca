@@ -8,5 +8,14 @@
 </head>
 <body>
 This is faculty page
+<form action="Ca" method="post">
+	<input type="submit" name="action" value="events"/>
+</form>
+<form action="Ca" method="post">
+	<input type="submit" name="action" value="schedule"/>
+</form>
+<form action="Ca" method="post">
+	<input type="submit" name="action" value="alumni"/>
+</form>
 </body>
 </html>

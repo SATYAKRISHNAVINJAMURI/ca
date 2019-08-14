@@ -9,6 +9,15 @@
 <body>
 <form action="Ca" name="action" method="get">
 This is student page
+<form action="Ca" method="post">
+	<input type="submit" name="action" value="events"/>
+</form>
+<form action="Ca" method="post">
+	<input type="submit" name="action" value="schedule"/>
+</form>
+<form action="Ca" method="post">
+	<input type="submit" name="action" value="alumni"/>
+</form>
 </form>
 </body>
 </html>
