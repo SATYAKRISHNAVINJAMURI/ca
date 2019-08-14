@@ -88,6 +88,10 @@ public class Ca extends HttpServlet {
 					e.printStackTrace();
 				}
 				break;
+			case "search_alumni":
+				break;
+				
+			
 			default: 
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 				
@@ -136,8 +140,13 @@ public class Ca extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-		}else if(user.getRole().trim().equals("alumini")){
+		}else if(user.getRole().trim().equals("alumni")){
 			try {
+				AlumniDao ad = new AlumniDao();
+				if(ad.getAllAlumni(connection) == null){
+					System.out.println("Null Alumni List");
+				}
+				request.setAttribute("alumni_list", ad.getAllAlumni(connection));
 				request.getRequestDispatcher("alumniindex.jsp").forward(request, response);
 			} catch (ServletException | IOException e) {
 				// TODO Auto-generated catch block

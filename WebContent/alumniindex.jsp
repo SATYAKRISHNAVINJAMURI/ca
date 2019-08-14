@@ -8,5 +8,25 @@
 </head>
 <body>
 <h1> This is alumni page.</h1>
+<%@ page import= "com.ca.classes.Alumni,java.util.List" %> 
+<a href="login.jsp">Login</a>
+<table border='1'>
+
+<form action="Ca" method="post">
+	<input type="text" name="name"/>
+	<input type="submit" name="action" value="search_alumni"/>
+</form>
+
+
+<% List<Alumni> alumnilist =(List<Alumni>)request.getAttribute("alumni_list");
+for(Alumni al: alumnilist){ %>
+<h3> Name: </h3> <%=al.getName() %>
+<h3> Id: </h3> <%=al.getUser_id() %>
+<h3> Email: </h3> <%=al.getEmail() %>
+<h3> Phone: </h3> <%=al.getPhone() %>
+<h3> Department: </h3> <%=al.getDepartment() %>
+<h3> BatchFrom: </h3> <%=al.getYearOfJoining() %>
+<h3> BatchTo: </h3> <%=al.getDepartment() %>
+<% } %>
 </body>
 </html>
