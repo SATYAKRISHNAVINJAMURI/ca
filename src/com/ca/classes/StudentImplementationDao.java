@@ -9,15 +9,14 @@ import com.ca.interfaces.StudentDaoI;
 
 public class StudentImplementationDao implements StudentDaoI {
 	
-	public User getCredentials(Connection connection,String user_id, String password, String role)
+	public User getCredentials(Connection connection,int user_id, String password)
 	{
 		String template = "select * from login where user_id = ? and password = ?";
 		User user = new User();
 		try{
 			PreparedStatement psmt = connection.prepareStatement(template);
-			psmt.setString(1, user_id);
+			psmt.setInt(1, user_id);
 			psmt.setString(2, password);
-			psmt.setString(3, role);
 			
 			ResultSet rs = psmt.executeQuery();
 			if(rs.next())
@@ -38,10 +37,10 @@ public class StudentImplementationDao implements StudentDaoI {
 		return null;
 	}
 
+	}
+
 	
 	
-	
-}
 	
 
 	

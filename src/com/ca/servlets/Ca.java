@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ca.classes.StudentImplementationDao;
+import com.ca.classes.User;
+import com.ca.interfaces.StudentDaoI;
+
 
 
 /**
@@ -20,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Ca")
 public class Ca extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static Connection connection = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,7 +39,6 @@ public class Ca extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		Connection connection = null;
 		super.init(config);
 		try {
 			Properties properties = new Properties();
@@ -64,7 +68,8 @@ public class Ca extends HttpServlet {
 		String str = request.getParameter("action");
 		switch(str){
 			case "login":
-				login();
+				login(request, response);
+				
 				break;
 			default:
 				break;
@@ -73,10 +78,30 @@ public class Ca extends HttpServlet {
 	}
 	
 	
-	protected void login(String username, String password){
+	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		/*
 		 *login validation and redirect to the student_index or faculty_index pages. 
 	 	*/
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		String password = request.getParameter("password");
+		User user  = new StudentImplementationDao().getCredentials(connection, user_id, password);
+		if(user == null){
+			request.getRequestDispatcher("studentindex.jsp").forward(request,response);
+		}else if(user.getRole() == "faculty"){
+			try {
+				request.getRequestDispatcher("facultyindex.jsp").forward(request,response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(user.getRole() == "student"){
+			try {
+				request.getRequestDispatcher("studentindex.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}	
 	}
 	
 	protected void submitApplication(){
