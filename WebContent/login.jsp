@@ -69,8 +69,8 @@
 		
 		</script>
 	<div id="errormsg"></div>
-	<form name="form1"  action="Ca" method="get" onsubmit='return check()'/>
-	<input type="text" name="email" placeholder="Enter email"/><br>
+	<form name="form1"  action="Ca" method="post" onsubmit='return check()'/>
+	<input type="text" name="id" placeholder="Enter Id"/><br>
 	<input type="password" name="password" placeholder="Enter password"/><br>
 	<input type="submit" name="action" value="login"/>
 	</form> 

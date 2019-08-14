@@ -19,8 +19,7 @@ public class StudentImplementationDao implements StudentDaoI {
 			psmt.setString(2, password);
 			
 			ResultSet rs = psmt.executeQuery();
-			if(rs.next())
-			{
+			if(rs.next()){
 				user.setUser_id(rs.getInt("user_id"));
 				user.setPassword(rs.getString("password"));
 				user.setRole(rs.getString("role"));
@@ -28,12 +27,11 @@ public class StudentImplementationDao implements StudentDaoI {
 			}
 			else{
 				return null;
-				}
 			}
-			catch(SQLException e)
-			{
+		}
+		catch(SQLException e){
 			System.out.println(e);
-			}
+		}
 		return null;
 	}
 

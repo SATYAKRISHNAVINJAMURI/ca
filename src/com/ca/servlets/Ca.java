@@ -116,11 +116,12 @@ public class Ca extends HttpServlet {
 		/*
 		 *login validation and redirect to the student_index or faculty_index pages. 
 	 	*/
-		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		int user_id = Integer.parseInt(request.getParameter("id"));
 		String password = request.getParameter("password");
 		User user  = new StudentImplementationDao().getCredentials(connection, user_id, password);
 		if(user == null){
-			request.getRequestDispatcher("studentindex.jsp").forward(request,response);
+			System.out.println("invalid credentials");
+			
 		}else if(user.getRole() == "faculty"){
 			try {
 				request.getRequestDispatcher("facultyindex.jsp").forward(request,response);
@@ -128,14 +129,17 @@ public class Ca extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(user.getRole() == "student"){
+		}else if(user.getRole().trim().equals("student")){
 			try {
+				System.out.println("welcom student");
 				request.getRequestDispatcher("studentindex.jsp").forward(request, response);
 			} catch (ServletException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-		}	
+		}else{
+			System.out.println(user.getRole());
+		}
 	}
 	
 	protected void submitApplication(HttpServletRequest request,HttpServletResponse response) throws SQLException{
