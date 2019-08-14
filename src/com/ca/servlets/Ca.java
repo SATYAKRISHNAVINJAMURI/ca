@@ -69,6 +69,7 @@ public class Ca extends HttpServlet {
 		// TODO Auto-generated method stub
 		String str = request.getParameter("action");
 		System.out.println(str);
+		
 		switch(str){
 			case "login":
 //				login();
@@ -76,6 +77,16 @@ public class Ca extends HttpServlet {
 			case "getCourses":
 				welcome( request,response);
 				break;
+			case "register":
+				try {
+					submitApplication(request,response);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			default: 
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -96,17 +107,27 @@ public class Ca extends HttpServlet {
 		}
 	}
 	
-	protected void login(String username, String password){
+	protected void login(
+			Connection connection,HttpServletRequest request,HttpServletResponse response,String username, String password){
 		/*
 		 *login validation and redirect to the student_index or faculty_index pages. 
 	 	*/
 	}
 	
-	protected void submitApplication(){
-		/*
-		 *update applications table and redirect to index page.
-		 */
-		
+	protected void submitApplication(HttpServletRequest request,HttpServletResponse response) throws SQLException{
+        ApplicantDao applicant=new ApplicantDao();
+        if(applicant.pushApplicantsToDatabase(connection, request, response) == 0){
+        	
+        }else{
+        	try {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
+	
 	}
 	protected void viewDepartments(){
 		/*

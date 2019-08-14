@@ -9,14 +9,23 @@
 <body>
 <h1> Hello Welcome. </h1>
 <%@ page import= "com.ca.classes.Branches,java.util.List" %> 
-<a href="/ca">Login</a>
+<a href="login.jsp">Login</a>
 <table border='1'>
 <% List<Branches> branchList=(List<Branches>)request.getAttribute("branchList"); %>
+<h1>List of Courses we offer</h1>
 <%
-for(Branches branch:branchList){%>
+for(Branches branch:branchList){
+String s="";
+String s1=branch.getBranch_course();
+for(int i=0;i<s1.length();i++){
+	if(s1.charAt(i) !=' ')
+		s += s1.charAt(i);
+}
+%>  
 	<tr>
 	
-	<td><%= branch.getBranch_id() %></td></tr>
+	<td><a href="registration.jsp?course=<%=s %>>"  value=<%branch.getBranch_course(); %>><%= branch.getBranch_course() %></a></td>
+	</tr>
 <% }%>
 
 </table>

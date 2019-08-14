@@ -22,11 +22,13 @@ public class DbConnection {
 			Class.forName(jdbcDriver);
 			connection=DriverManager.getConnection(dbUrl,dbUser,dbPassword);
 				if(connection!=null)
-					System.out.println("connection succesfull");
+//					System.out.println("connection succesfull");
+					return connection;
 			} catch (SQLException|ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println("failure");
+				return null;
+//				System.out.println("failure");
 			}
 		
 	return connection;
