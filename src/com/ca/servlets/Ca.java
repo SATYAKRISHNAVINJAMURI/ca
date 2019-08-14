@@ -89,10 +89,22 @@ public class Ca extends HttpServlet {
 				}
 				break;
 			case "search_alumni":
+				try {
+					AlumniDao ad = new AlumniDao();
+					if(ad.getAlumni(connection,request.getParameter("name")) == null){
+						System.out.println("Null Alumni List");
+					}else{
+						request.setAttribute("alumni_list", ad.getAlumni(connection,request.getParameter("name")));
+						request.getRequestDispatcher("alumniindex.jsp").forward(request, response);
+					}
+					} catch (ServletException | IOException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 				break;
-				
-			
-			default: 
+			case "welcome":
+				welcome( request,response);
+				default: 
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 				
 		}
@@ -143,12 +155,13 @@ public class Ca extends HttpServlet {
 		}else if(user.getRole().trim().equals("alumni")){
 			try {
 				AlumniDao ad = new AlumniDao();
-				if(ad.getAllAlumni(connection) == null){
+				if(ad.getAlumni(connection,null) == null){
 					System.out.println("Null Alumni List");
+				}else{
+					request.setAttribute("alumni_list", ad.getAlumni(connection,null));
+					request.getRequestDispatcher("alumniindex.jsp").forward(request, response);
 				}
-				request.setAttribute("alumni_list", ad.getAllAlumni(connection));
-				request.getRequestDispatcher("alumniindex.jsp").forward(request, response);
-			} catch (ServletException | IOException e) {
+				} catch (ServletException | IOException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 

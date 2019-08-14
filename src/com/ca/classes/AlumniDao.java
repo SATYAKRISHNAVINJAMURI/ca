@@ -10,41 +10,20 @@ import java.util.List;
 import com.ca.interfaces.AlumniDaoI;
 
 public class AlumniDao implements AlumniDaoI {
-	public Alumni getAlumni(Connection connection, String name){
-		String template = "select * from alumni where name like  ?";
-		Alumni al = new Alumni();
-		try{
-			PreparedStatement psmt = connection.prepareStatement(template);
-			psmt.setString(1, name);
-			
-			ResultSet rs = psmt.executeQuery();
-			if(rs.next()){
-				al.setUser_id(rs.getInt("student_id"));
-				al.setName(rs.getString("name"));
-				al.setEmail(rs.getString("email"));
-				al.setYearOfJoining(rs.getDate("year_of_joining"));
-				al.setYearOfLeaving(rs.getDate("year_of_leaving"));
-				al.setDepartment(rs.getString("department"));
-				return al;
-			}
-			else{
-				return null;
-			}
+	public List<Alumni> getAlumni(Connection connection, String name) throws SQLException{
+		PreparedStatement psmt = null;
+		if(name == null){
+			String template = "select * from alumni";
+			psmt = connection.prepareStatement(template);
+		}else{
+			String template = "select * from alumni where name like ?";
+			psmt = connection.prepareStatement(template);
+			psmt.setString(1,"%" + name + "%");
 		}
-		catch(SQLException e){
-			System.out.println(e);
-		}
-		return null;
-		
-	}
-	
-	public List<Alumni> getAllAlumni(Connection connection){
-		String template = "select * from alumni";
+
 		Alumni al = new Alumni();
 		List<Alumni> al_list = new ArrayList<>();
 		try{
-			PreparedStatement psmt = connection.prepareStatement(template);
-			
 			ResultSet rs = psmt.executeQuery();
 			while(rs.next()){
 				al.setUser_id(rs.getInt("student_id"));
@@ -63,5 +42,6 @@ public class AlumniDao implements AlumniDaoI {
 		return null;
 		
 	}
+
 
 }
