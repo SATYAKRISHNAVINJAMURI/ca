@@ -29,11 +29,7 @@ import com.ca.interfaces.StudentDaoI;
 @WebServlet("/Ca")
 public class Ca extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
-	Connection connection = null;
-=======
 	public static Connection connection = null;
->>>>>>> 6e8a47f2580432c21fa796df91944ba0c8e71b2e
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,10 +44,6 @@ public class Ca extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		
-=======
->>>>>>> 6e8a47f2580432c21fa796df91944ba0c8e71b2e
 		super.init(config);
 		try {
 			Properties properties = new Properties();
@@ -80,18 +72,13 @@ public class Ca extends HttpServlet {
 		// TODO Auto-generated method stub
 		String str = request.getParameter("action");
 		System.out.println(str);
-		
+		if(str == null){
+			welcome( request,response);
+		}
 		switch(str){
 			case "login":
-<<<<<<< HEAD
-//				login();
-=======
+				//login();
 				login(request, response);
-				
->>>>>>> 6e8a47f2580432c21fa796df91944ba0c8e71b2e
-				break;
-			case "getCourses":
-				welcome( request,response);
 				break;
 			case "register":
 				try {
@@ -103,8 +90,8 @@ public class Ca extends HttpServlet {
 				break;
 			default: 
 				request.getRequestDispatcher("index.jsp").forward(request, response);
+				
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 	
 	protected void welcome(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
@@ -123,12 +110,9 @@ public class Ca extends HttpServlet {
 		}
 	}
 	
-<<<<<<< HEAD
-	protected void login(
-			Connection connection,HttpServletRequest request,HttpServletResponse response,String username, String password){
-=======
+
+
 	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
->>>>>>> 6e8a47f2580432c21fa796df91944ba0c8e71b2e
 		/*
 		 *login validation and redirect to the student_index or faculty_index pages. 
 	 	*/
