@@ -126,7 +126,7 @@ public class Ca extends HttpServlet {
 					if(ad.getMerit(connection) == null){
 						System.out.println("Null Event List");
 					}else{
-						request.setAttribute("merit_list", ad.getEvents(connection));
+						request.setAttribute("merit_list", ad.getMerit(connection));
 						request.getRequestDispatcher("merit.jsp").forward(request, response);
 					}
 					} catch (ServletException | IOException e) {

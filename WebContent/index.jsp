@@ -30,8 +30,9 @@ for(int i=0;i<s1.length();i++){
 
 </table>
 <h1>click the below link to check the merit list</h1>
-<form action="Ca" method="get">
-<input type="button" name="action" value="merit"/></form>
+<form action="Ca" method="post">
+<input type="hidden" name="action" value="merit"/>
+<input type="submit" value="merit"/></form>
 
 </body>
 </html>

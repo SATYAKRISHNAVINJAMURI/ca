@@ -17,8 +17,8 @@
 <th>Phone</th>
 <th>Email</th>
 </tr>
-<% List<Merit> Meritlist =(List<Merit>)request.getAttribute("merit_list");
-for(Merit al: Meritlist){ %>
+<% List<Merit> meritlist =(List<Merit>)request.getAttribute("merit_list");
+for(Merit al: meritlist){ %>
 
 <tr>
  <td><%=al.getName() %></td>

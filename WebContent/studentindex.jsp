@@ -10,13 +10,16 @@
 <form action="Ca" name="action" method="get">
 This is student page
 <form action="Ca" method="post">
-	<input type="submit" name="action" value="events"/>
+		<input type="hidden" name="action" value="events"/>
+	<input type="submit"/>
 </form>
 <form action="Ca" method="post">
-	<input type="submit" name="action" value="schedule"/>
+	<input type="hidden" name="action" value="schedule"/>
+	<input type="submit"/>
 </form>
 <form action="Ca" method="post">
-	<input type="submit" name="action" value="alumni"/>
+	<input type="hidden" name="action" value="alumni"/>
+	<input type="submit" />
 </form>
 </form>
 </body>
