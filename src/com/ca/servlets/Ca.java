@@ -102,6 +102,20 @@ public class Ca extends HttpServlet {
 					e.printStackTrace();
 				} 
 				break;
+			case "events":
+				try {
+					StudentImplementationDao ad = new StudentImplementationDao();
+					if(ad.getEvents(connection) == null){
+						System.out.println("Null Event List");
+					}else{
+						request.setAttribute("event_list", ad.getEvents(connection));
+						request.getRequestDispatcher("events.jsp").forward(request, response);
+					}
+					} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				break;
 			case "welcome":
 				welcome( request,response);
 				default: 
