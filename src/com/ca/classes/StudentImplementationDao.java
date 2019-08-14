@@ -9,22 +9,7 @@ import com.ca.servlets.Ca;
 
 public class StudentImplementationDao implements User {
 	
-		private String dbUrl="jdbc:mysql://10.7.177.21:3306/ca";
-		private String dbUser="causer";
-		private String dbPass="capass";
-		private String dbDriver="com.mysql.jdbc.Driver";
-	
-	private Connection connection;
-	User user;
-	try {
-		Class.forName(driverClass);
-		connection = DriverManager.getConnection(dbUrl,dbUser,dbPass);
-	}
-	catch (ClassNotFoundException | SQLException e) {
-		System.out.println(e);
-	}
-	
-	public User getCredentials(String user_id, String password, String role)
+	public User getCredentials(Connection connection,String user_id, String password, String role)
 	{
 		String template = "select * from login";
 		user = new StudentImplementationDao();
