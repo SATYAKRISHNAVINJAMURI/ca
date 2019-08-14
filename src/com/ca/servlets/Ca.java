@@ -106,6 +106,9 @@ public class Ca extends HttpServlet {
 				welcome( request,response);
 				default: 
 				request.getRequestDispatcher("index.jsp").forward(request, response);
+			case "merit":
+				ApplicationStatus(request,response);
+					
 				
 		}
 	}
@@ -252,10 +255,12 @@ public class Ca extends HttpServlet {
 		 */
 	}
 	
-	protected void ApplicationStatus(int id){
+	protected void ApplicationStatus(HttpServletRequest request, HttpServletResponse response){
 		/*
 		 * application page and display the status and details of application.
 		 */
+		
+		
 	}
 	
 	protected void classesSchedule(){

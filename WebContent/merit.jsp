@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="Ca" method="post">
 <input type="hidden" name="action" value="merit"/>
+<input type="button" name="action" value="welcome"/>
+</form>
 </body>
 </html>
