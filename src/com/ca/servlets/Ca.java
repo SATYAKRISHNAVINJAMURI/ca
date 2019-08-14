@@ -122,7 +122,7 @@ public class Ca extends HttpServlet {
 		if(user == null){
 			System.out.println("invalid credentials");
 			
-		}else if(user.getRole() == "faculty"){
+		}else if(user.getRole().trim().equals("faculty")){
 			try {
 				request.getRequestDispatcher("facultyindex.jsp").forward(request,response);
 			} catch (ServletException | IOException e) {
@@ -131,14 +131,21 @@ public class Ca extends HttpServlet {
 			}
 		}else if(user.getRole().trim().equals("student")){
 			try {
-				System.out.println("welcom student");
 				request.getRequestDispatcher("studentindex.jsp").forward(request, response);
 			} catch (ServletException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
+		}else if(user.getRole().trim().equals("alumini")){
+			try {
+				request.getRequestDispatcher("alumniindex.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+
 		}else{
-			System.out.println(user.getRole());
+			System.out.println("Couldn't find this type of role.");
 		}
 	}
 	
