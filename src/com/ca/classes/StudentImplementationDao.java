@@ -63,7 +63,7 @@ public class StudentImplementationDao implements StudentDaoI {
 	public List<Merit> getMerit(Connection connection) {
 		// TODO Auto-generated method stub
 		try{
-			String template = "select * from merit_list";
+			String template = "select * from merit_list1";
 			PreparedStatement psmt = connection.prepareStatement(template);
 			Merit me = new Merit();
 			List<Merit> me_list = new ArrayList<>();
