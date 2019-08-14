@@ -69,13 +69,13 @@ public class Ca extends HttpServlet {
 		// TODO Auto-generated method stub
 		String str = request.getParameter("action");
 		System.out.println(str);
+		if(str == null){
+			welcome(request,response);
+		}
 		
 		switch(str){
 			case "login":
 //				login();
-				break;
-			case "getCourses":
-				welcome( request,response);
 				break;
 			case "register":
 				try {
